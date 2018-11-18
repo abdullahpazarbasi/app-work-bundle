@@ -1,0 +1,42 @@
+{
+  "name": "abdullahpazarbasi/app-work-bundle",
+  "type": "symfony-bundle",
+  "description": "",
+  "keywords": [
+    "bundle",
+    "symfony",
+    "theme",
+    "ui",
+    "kit",
+    "appwork",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/abdullahpazarbasi/app-work-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Abdullah Pazarbasi",
+      "email": "mapazarbasi@hotmail.com",
+      "homepage": "http://www.abdullahpazarbasi.com/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "symfony/framework-bundle": "~2.7|~3.0|~4.0"
+  },
+  "require-dev": {
+    "symfony/phpunit-bridge": "~2.7|~3.0|~4.0",
+    "symfony/twig-bundle": "~2.7|~3.0|~4.0",
+    "symfony/var-dumper": "~2.7|~3.0|~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AppWorkBundle\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AppWorkBundle\\Tests\\": "tests"
+    }
+  }
+}
