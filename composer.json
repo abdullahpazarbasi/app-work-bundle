@@ -1,7 +1,7 @@
 {
   "name": "abdullahpazarbasi/app-work-bundle",
   "type": "symfony-bundle",
-  "description": "",
+  "description": "AppWork UI Kit Symfony Bundle helps you integrate Appwork Bootstrap 4 Template + UI Kit in your Symfony project",
   "keywords": [
     "bundle",
     "symfony",
