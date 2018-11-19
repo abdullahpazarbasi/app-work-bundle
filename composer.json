@@ -6,6 +6,7 @@
     "bundle",
     "symfony",
     "theme",
+    "template",
     "ui",
     "kit",
     "appwork",
@@ -22,11 +23,11 @@
   ],
   "require": {
     "php": ">=5.6",
-    "symfony/framework-bundle": "~2.7|~3.0|~4.0"
+    "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+    "symfony/twig-bundle": "~2.7|~3.0|~4.0"
   },
   "require-dev": {
     "symfony/phpunit-bridge": "~2.7|~3.0|~4.0",
-    "symfony/twig-bundle": "~2.7|~3.0|~4.0",
     "symfony/var-dumper": "~2.7|~3.0|~4.0"
   },
   "autoload": {

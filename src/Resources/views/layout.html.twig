@@ -1,0 +1,157 @@
+{% extends "base.html.twig" %}
+
+{% if theme is not defined %}
+    {% set theme = {
+        'charset': 'utf-8',
+        'fonts': [
+            { 'href': 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900' }
+        ],
+        'icons': [
+            { 'href': '/bundles/appwork/vendor/fonts/fontawesome.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/ionicons.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/linearicons.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/open-iconic.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/pe-icon-7-stroke.css' }
+        ],
+        'coreStyleSheets': [
+            { 'href': '/bundles/appwork/vendor/css/bootstrap.css' },
+            { 'href': '/bundles/appwork/vendor/css/appwork.css' },
+            { 'href': '/bundles/appwork/vendor/css/theme-corporate.css' },
+            { 'href': '/bundles/appwork/vendor/css/colors.css' },
+            { 'href': '/bundles/appwork/vendor/css/uikit.css' }
+        ],
+        'coreScripts': [
+            { 'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' },
+            { 'src': '/bundles/appwork/vendor/libs/popper/popper.js' },
+            { 'src': '/bundles/appwork/vendor/js/bootstrap.js' },
+            { 'src': '/bundles/appwork/vendor/js/sidenav.js' }
+        ],
+        'helperScripts': [
+            { 'src': '/bundles/appwork/vendor/js/layout-helpers.js' }
+        ],
+        'styleSheetsOfLibs': [
+            { 'href': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' }
+        ],
+        'scriptsOfLibs': [
+            { 'src': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' }
+        ]
+    } %}
+{% endif %}
+
+{% block title %}Administration{% endblock title %}
+
+{% block head %}
+    <meta charset="{{ theme.charset }}">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock description %}">
+    {% if theme.fonts|length > 0 %}
+        {% for font in theme.fonts %}
+            <link href="{{ font.href|e('url') }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.icons|length > 0 %}
+        {% for icon in theme.icons %}
+            <link href="{{ icon.href|e('url') }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.coreStyleSheets|length > 0 %}
+        {% for coreStyleSheet in theme.coreStyleSheets %}
+            <link href="{{ coreStyleSheet.href|e('url') }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.helperScripts|length > 0 %}
+        {% for helperScript in theme.helperScripts %}
+            <script src="{{ helperScript.src|e('url') }}"></script>
+        {% endfor %}
+    {% endif %}
+    {% if theme.styleSheetsOfLibs|length > 0 %}
+        {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
+            <link href="{{ styleSheetOfLib.href|e('url') }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+{% endblock head %}
+
+{% block body %}
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-1">
+        <!-- Layout inner -->
+        <div class="layout-inner">
+
+            <!-- Layout navbar -->
+            <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x" id="layout-navbar">
+                <a href="index.html" class="navbar-brand">HTML Starter</a>
+
+                <!-- Sidenav toggle -->
+                <div class="layout-sidenav-toggle navbar-nav align-items-lg-center mr-auto mr-lg-4">
+                    <a class="nav-item nav-link px-0 ml-2" href="javascript:void(0)">
+                        <i class="ion ion-md-menu text-large align-middle"></i>
+                    </a>
+                </div>
+
+                <!-- Navbar toggle -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#layout-navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                    <div class="navbar-nav align-items-lg-center">
+                        <div class="nav-item"><a class="nav-link" href="#">Link 1</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Link 2</a></div>
+                    </div>
+                </div>
+            </nav>
+            <!-- / Layout navbar -->
+
+            <div class="layout-container">
+
+                <!-- Layout sidenav -->
+                <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-sidenav-theme">
+                    <ul class="sidenav-inner py-1">
+                        <li class="sidenav-item active">
+                            <a href="index.html" class="sidenav-link"><i class="sidenav-icon ion ion-ios-contact"></i><div>Page 1</div></a>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="page-2.html" class="sidenav-link"><i class="sidenav-icon ion ion-md-desktop"></i><div>Page 2</div></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- / Layout sidenav -->
+
+                <div class="layout-content">
+
+                    <!-- Page content -->
+                    {% block content %}
+                    {% endblock content %}
+                    <!-- / Page content -->
+
+                    <!-- Layout footer -->
+                    <nav class="layout-footer footer bg-footer-theme">
+                        <div class="container-fluid container-p-x pb-3">
+                            <a href="#" class="footer-link pt-3">Link 1</a>
+                            <a href="#" class="footer-link pt-3 ml-4">Link 2</a>
+                        </div>
+                    </nav>
+                    <!-- / Layout footer -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Layout inner -->
+
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+    {% if theme.coreScripts|length > 0 %}
+        {% for coreScript in theme.coreScripts %}
+            <script src="{{ coreScript.src|e('url') }}"></script>
+        {% endfor %}
+    {% endif %}
+    {% if theme.scriptsOfLibs|length > 0 %}
+        {% for scriptOfLib in theme.scriptsOfLibs %}
+            <script src="{{ scriptOfLib.src|e('url') }}"></script>
+        {% endfor %}
+    {% endif %}
+    <script src="/bundles/appwork/vendor/js/main.js"></script>
+{% endblock body %}
