@@ -11,6 +11,9 @@ namespace AppWorkBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * Class AppWorkBundle
+ */
 class AppWorkBundle extends Bundle
 {
 }
