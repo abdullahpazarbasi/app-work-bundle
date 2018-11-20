@@ -3,6 +3,8 @@
 {% if theme is not defined %}
     {% set theme = {
         'charset': 'utf-8',
+        'favicon': { 'href': 'favicon.ico' },
+        'navbar': { 'brand': { 'href': '/' } },
         'fonts': [
             { 'href': 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900' }
         ],
@@ -21,13 +23,18 @@
             { 'href': '/bundles/appwork/vendor/css/uikit.css' }
         ],
         'coreScripts': [
-            { 'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' },
             { 'src': '/bundles/appwork/vendor/libs/popper/popper.js' },
             { 'src': '/bundles/appwork/vendor/js/bootstrap.js' },
             { 'src': '/bundles/appwork/vendor/js/sidenav.js' }
         ],
         'helperScripts': [
-            { 'src': '/bundles/appwork/vendor/js/layout-helpers.js' }
+            { 'src': '/bundles/appwork/vendor/js/material-ripple.js' },
+            { 'src': '/bundles/appwork/vendor/js/layout-helpers.js' },
+            { 'src': '/bundles/appwork/vendor/js/theme-settings.js' }
+        ],
+        'headScripts': [
+            { 'src': '/bundles/appwork/vendor/js/pace.js' },
+            { 'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }
         ],
         'styleSheetsOfLibs': [
             { 'href': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' }
@@ -45,6 +52,7 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock description %}">
+    <link rel="icon" type="image/x-icon" href="{{ asset(theme.favicon.href) }}">
     {% if theme.fonts|length > 0 %}
         {% for font in theme.fonts %}
             <link href="{{ font.href }}" rel="stylesheet">
@@ -65,6 +73,17 @@
             <script src="{{ helperScript.src }}"></script>
         {% endfor %}
     {% endif %}
+    <script>
+        window.themeSettings = new ThemeSettings({
+            cssPath: 'bundles/appwork/vendor/css/rtl/',
+            themesPath: 'bundles/appwork/vendor/css/rtl/'
+        });
+    </script>
+    {% if theme.headScripts|length > 0 %}
+        {% for headScript in theme.headScripts %}
+            <script src="{{ headScript.src }}"></script>
+        {% endfor %}
+    {% endif %}
     {% if theme.styleSheetsOfLibs|length > 0 %}
         {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
             <link href="{{ styleSheetOfLib.href }}" rel="stylesheet">
@@ -73,76 +92,15 @@
 {% endblock head %}
 
 {% block body %}
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-1">
-        <!-- Layout inner -->
-        <div class="layout-inner">
-
-            <!-- Layout navbar -->
-            <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x" id="layout-navbar">
-                <a href="index.html" class="navbar-brand">HTML Starter</a>
-
-                <!-- Sidenav toggle -->
-                <div class="layout-sidenav-toggle navbar-nav align-items-lg-center mr-auto mr-lg-4">
-                    <a class="nav-item nav-link px-0 ml-2" href="javascript:void(0)">
-                        <i class="ion ion-md-menu text-large align-middle"></i>
-                    </a>
-                </div>
-
-                <!-- Navbar toggle -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#layout-navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="navbar-collapse collapse" id="layout-navbar-collapse">
-                    <div class="navbar-nav align-items-lg-center">
-                        <div class="nav-item"><a class="nav-link" href="#">Link 1</a></div>
-                        <div class="nav-item"><a class="nav-link" href="#">Link 2</a></div>
-                    </div>
-                </div>
-            </nav>
-            <!-- / Layout navbar -->
-
-            <div class="layout-container">
-
-                <!-- Layout sidenav -->
-                <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-sidenav-theme">
-                    <ul class="sidenav-inner py-1">
-                        <li class="sidenav-item active">
-                            <a href="index.html" class="sidenav-link"><i class="sidenav-icon ion ion-ios-contact"></i><div>Page 1</div></a>
-                        </li>
-                        <li class="sidenav-item">
-                            <a href="page-2.html" class="sidenav-link"><i class="sidenav-icon ion ion-md-desktop"></i><div>Page 2</div></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- / Layout sidenav -->
-
-                <div class="layout-content">
-
-                    <!-- Page content -->
-                    {% block content %}
-                    {% endblock content %}
-                    <!-- / Page content -->
-
-                    <!-- Layout footer -->
-                    <nav class="layout-footer footer bg-footer-theme">
-                        <div class="container-fluid container-p-x pb-3">
-                            <a href="#" class="footer-link pt-3">Link 1</a>
-                            <a href="#" class="footer-link pt-3 ml-4">Link 2</a>
-                        </div>
-                    </nav>
-                    <!-- / Layout footer -->
-
-                </div>
-            </div>
-
-        </div>
-        <!-- Layout inner -->
-
-        <div class="layout-overlay layout-sidenav-toggle"></div>
+    <div class="page-loader">
+        <div class="bg-primary"></div>
     </div>
-    <!-- / Layout wrapper -->
+
+    <!-- Page content -->
+    {% block content %}
+    {% endblock content %}
+    <!-- / Page content -->
+
     {% if theme.coreScripts|length > 0 %}
         {% for coreScript in theme.coreScripts %}
             <script src="{{ coreScript.src }}"></script>
@@ -153,5 +111,5 @@
             <script src="{{ scriptOfLib.src }}"></script>
         {% endfor %}
     {% endif %}
-    <script src="/bundles/appwork/custom/js/boot.js"></script>
+    <script src="{{ asset('bundles/appwork/custom/js/boot-blank.js') }}"></script>
 {% endblock body %}
