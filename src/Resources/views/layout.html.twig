@@ -47,27 +47,27 @@
     <meta name="description" content="{% block description %}{% endblock description %}">
     {% if theme.fonts|length > 0 %}
         {% for font in theme.fonts %}
-            <link href="{{ font.href|e('url') }}" rel="stylesheet">
+            <link href="{{ font.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
     {% if theme.icons|length > 0 %}
         {% for icon in theme.icons %}
-            <link href="{{ icon.href|e('url') }}" rel="stylesheet">
+            <link href="{{ icon.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
     {% if theme.coreStyleSheets|length > 0 %}
         {% for coreStyleSheet in theme.coreStyleSheets %}
-            <link href="{{ coreStyleSheet.href|e('url') }}" rel="stylesheet">
+            <link href="{{ coreStyleSheet.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
     {% if theme.helperScripts|length > 0 %}
         {% for helperScript in theme.helperScripts %}
-            <script src="{{ helperScript.src|e('url') }}"></script>
+            <script src="{{ helperScript.src }}"></script>
         {% endfor %}
     {% endif %}
     {% if theme.styleSheetsOfLibs|length > 0 %}
         {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
-            <link href="{{ styleSheetOfLib.href|e('url') }}" rel="stylesheet">
+            <link href="{{ styleSheetOfLib.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
 {% endblock head %}
@@ -145,12 +145,12 @@
     <!-- / Layout wrapper -->
     {% if theme.coreScripts|length > 0 %}
         {% for coreScript in theme.coreScripts %}
-            <script src="{{ coreScript.src|e('url') }}"></script>
+            <script src="{{ coreScript.src }}"></script>
         {% endfor %}
     {% endif %}
     {% if theme.scriptsOfLibs|length > 0 %}
         {% for scriptOfLib in theme.scriptsOfLibs %}
-            <script src="{{ scriptOfLib.src|e('url') }}"></script>
+            <script src="{{ scriptOfLib.src }}"></script>
         {% endfor %}
     {% endif %}
     <script src="/bundles/appwork/vendor/js/main.js"></script>
