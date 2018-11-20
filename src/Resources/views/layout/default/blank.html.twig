@@ -41,6 +41,9 @@
         ],
         'scriptsOfLibs': [
             { 'src': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' }
+        ],
+        'customStyleSheets': [
+            { 'href': '/bundles/appwork/custom/css/layout-default-priority-top.css' }
         ]
     } %}
 {% endif %}
@@ -87,6 +90,11 @@
     {% if theme.styleSheetsOfLibs|length > 0 %}
         {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
             <link href="{{ styleSheetOfLib.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.customStyleSheets|length > 0 %}
+        {% for customStyleSheet in theme.customStyleSheets %}
+            <link href="{{ customStyleSheet.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
 {% endblock head %}

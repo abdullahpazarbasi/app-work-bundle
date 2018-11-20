@@ -50,6 +50,9 @@
         ],
         'scriptsOfLibs': [
             { 'src': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' }
+        ],
+        'customStyleSheets': [
+            { 'href': '/bundles/appwork/custom/css/layout-default-priority-top.css' }
         ]
     } %}
 {% endif %}
@@ -99,6 +102,11 @@
             <link href="{{ styleSheetOfLib.href }}" rel="stylesheet">
         {% endfor %}
     {% endif %}
+    {% if theme.customStyleSheets|length > 0 %}
+        {% for customStyleSheet in theme.customStyleSheets %}
+            <link href="{{ customStyleSheet.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
 {% endblock head %}
 
 {% block body %}
@@ -117,7 +125,7 @@
                 <!-- Brand -->
                 <a href="{{ theme.navbar.brand.href }}" class="navbar-brand app-brand d-lg-none py-0 mr-4">
                     <span class="app-brand-logo bg-primary">
-                        {% block navbar_brand_logo %}<img src="{{ assert('bundles/appwork/custom/img/moon.png') }}" />{% endblock navbar_brand_logo %}
+                        {% block navbar_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock navbar_brand_logo %}
                     </span>
                     <span class="app-brand-text font-weight-normal ml-2">{% block navbar_brand_title %}Priority Top{% endblock navbar_brand_title %}</span>
                 </a>
@@ -153,7 +161,7 @@
                         {% block navbar_links %}
                         {% endblock navbar_links %}
 
-                        <div class="demo-navbar-user nav-item dropdown">
+                        <div class="navbar-user nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                     <img src="{{ theme.navbar.profile.picture.src }}" alt class="d-block ui-w-30 rounded-circle">
@@ -186,7 +194,7 @@
                     <!-- Brand -->
                     <div class="app-brand">
                         <span class="app-brand-logo bg-primary">
-                            {% block sidenav_brand_logo %}<img src="{{ assert('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
+                            {% block sidenav_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
                         </span>
                         <a href="{{ theme.sidenav.brand.href }}"
                            class="app-brand-text sidenav-text font-weight-normal ml-2">{% block sidenav_brand_title %}Priority Top{% endblock sidenav_brand_title %}</a>

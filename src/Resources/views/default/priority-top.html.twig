@@ -4,7 +4,7 @@
 
 {% block description %}This is homepage{% endblock description %}
 
-{% block navbar_brand_logo %}<img src="{{ assert('bundles/appwork/custom/img/moon.png') }}" />{% endblock navbar_brand_logo %}
+{% block navbar_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock navbar_brand_logo %}
 
 {% block navbar_brand_title %}Priority Top{% endblock navbar_brand_title %}
 
@@ -13,7 +13,7 @@
 {% endblock search_box %}
 
 {% block navbar_links %}
-    <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
+    <div class="navbar-notifications nav-item dropdown mr-lg-3">
         <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
             <i class="ion ion-md-notifications-outline navbar-icon align-middle"></i>
             <span class="badge badge-primary badge-dot indicator"></span>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div class="demo-navbar-messages nav-item dropdown mr-lg-3">
+    <div class="navbar-messages nav-item dropdown mr-lg-3">
         <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
             <i class="ion ion-ios-mail navbar-icon align-middle"></i>
             <span class="badge badge-primary badge-dot indicator"></span>
@@ -136,7 +136,7 @@
     </div>
 {% endblock navbar_links %}
 
-{% block sidenav_brand_logo %}<img src="{{ assert('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
+{% block sidenav_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
 
 {% block sidenav_brand_title %}Priority Top{% endblock sidenav_brand_title %}
 
