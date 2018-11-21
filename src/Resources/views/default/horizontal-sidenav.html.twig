@@ -1,4 +1,4 @@
-{% extends "@AppWork/layout/default/priority-left.html.twig" %}
+{% extends "@AppWork/layout/default/horizontal-sidenav.html.twig" %}
 
 {% block title %}Homepage{% endblock title %}
 
@@ -6,7 +6,7 @@
 
 {% block navbar_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock navbar_brand_logo %}
 
-{% block navbar_brand_title %}Priority Left{% endblock navbar_brand_title %}
+{% block navbar_brand_title %}Horizontal Sidenav{% endblock navbar_brand_title %}
 
 {% block search_box %}
     <input type="text" class="form-control navbar-text mx-2" placeholder="Search..." style="width: 200px;">
@@ -138,12 +138,12 @@
 
 {% block sidenav_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
 
-{% block sidenav_brand_title %}Priority Left{% endblock sidenav_brand_title %}
+{% block sidenav_brand_title %}Horizontal Sidenav{% endblock sidenav_brand_title %}
 
 {% block sidenav_links %}
-    <ul class="sidenav-inner py-1">
+    <ul class="sidenav-inner">
 
-        <li class="sidenav-item open active">
+        <li class="sidenav-item active">
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i
                         class="sidenav-icon ion ion-md-speedometer"></i>
                 <div>Items</div>
@@ -179,7 +179,7 @@
     <div class="container-fluid flex-grow-1 container-p-y">
 
         <h4 class="font-weight-bold py-3 mb-4">
-            <span class="text-muted font-weight-light">Layouts /</span> Priority Left
+            <span class="text-muted font-weight-light">Layouts /</span> Horizontal Sidenav
         </h4>
 
         <div>
