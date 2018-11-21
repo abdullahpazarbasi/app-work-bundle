@@ -16,11 +16,11 @@
             { 'href': '/bundles/appwork/vendor/fonts/pe-icon-7-stroke.css' }
         ],
         'coreStyleSheets': [
-            { 'href': '/bundles/appwork/vendor/css/bootstrap.css' },
-            { 'href': '/bundles/appwork/vendor/css/appwork.css' },
-            { 'href': '/bundles/appwork/vendor/css/theme-corporate.css' },
-            { 'href': '/bundles/appwork/vendor/css/colors.css' },
-            { 'href': '/bundles/appwork/vendor/css/uikit.css' }
+            { 'href': '/bundles/appwork/vendor/css/rtl/bootstrap.css', 'class': 'theme-settings-bootstrap-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/appwork.css', 'class': 'theme-settings-appwork-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/theme-corporate.css', 'class': 'theme-settings-theme-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/colors.css', 'class': 'theme-settings-colors-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/uikit.css' }
         ],
         'coreScripts': [
             { 'src': '/bundles/appwork/vendor/libs/popper/popper.js' },
@@ -68,7 +68,7 @@
     {% endif %}
     {% if theme.coreStyleSheets|length > 0 %}
         {% for coreStyleSheet in theme.coreStyleSheets %}
-            <link href="{{ coreStyleSheet.href }}" rel="stylesheet">
+            <link href="{{ coreStyleSheet.href }}"{% if coreStyleSheet.class is defined %} class="{{ coreStyleSheet.class }}"{% endif %} rel="stylesheet">
         {% endfor %}
     {% endif %}
     {% if theme.helperScripts|length > 0 %}
@@ -78,8 +78,8 @@
     {% endif %}
     <script>
         window.themeSettings = new ThemeSettings({
-            cssPath: 'bundles/appwork/vendor/css/rtl/',
-            themesPath: 'bundles/appwork/vendor/css/rtl/'
+            cssPath: '/bundles/appwork/vendor/css/rtl/',
+            themesPath: '/bundles/appwork/vendor/css/rtl/'
         });
     </script>
     {% if theme.headScripts|length > 0 %}
