@@ -4,7 +4,22 @@
     {% set theme = {
         'charset': 'utf-8',
         'favicon': { 'href': 'favicon.ico' },
-        'navbar': { 'brand': { 'href': '/' } },
+        'navbar': {
+            'brand': { 'href': '/' },
+            'profile': {
+                'name': 'John Doe',
+                'picture': { 'src': '/bundles/appwork/custom/img/no-one.jpg' }
+            }
+        },
+        'sidenav': {
+            'brand': { 'href': '/' }
+        },
+        'main': {
+            'header': {
+                'title': 'Basic',
+                'titleAncestry': 'Layouts /'
+            }
+        },
         'fonts': [
             { 'href': 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900' }
         ],

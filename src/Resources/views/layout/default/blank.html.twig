@@ -4,10 +4,25 @@
     {% set theme = {
         'charset': 'utf-8',
         'favicon': { 'href': 'favicon.ico' },
-        'navbar': { 'brand': { 'href': '/' } },
+        'navbar': {
+            'brand': { 'href': '/' },
+            'profile': {
+                'name': 'John Doe',
+                'picture': { 'src': '/bundles/appwork/custom/img/no-one.jpg' }
+            }
+        },
+        'sidenav': {
+            'brand': { 'href': '/' }
+        },
         'fonts': [
             { 'href': 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900' }
         ],
+        'main': {
+            'header': {
+                'title': 'Blank',
+                'titleAncestry': 'Layouts /'
+            }
+        },
         'icons': [
             { 'href': '/bundles/appwork/vendor/fonts/fontawesome.css' },
             { 'href': '/bundles/appwork/vendor/fonts/ionicons.css' },

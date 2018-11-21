@@ -1,0 +1,59 @@
+{% extends "@AppWork/layout/default/no-navbar.html.twig" %}
+
+{% block title %}Homepage{% endblock title %}
+
+{% block description %}This is homepage{% endblock description %}
+
+{% block sidenav_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
+
+{% block sidenav_brand_title %}No Navbar{% endblock sidenav_brand_title %}
+
+{% block sidenav_links %}
+    <ul class="sidenav-inner py-1">
+
+        <li class="sidenav-item open active">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i
+                        class="sidenav-icon ion ion-md-speedometer"></i>
+                <div>Items</div>
+            </a>
+
+            <ul class="sidenav-menu">
+                <li class="sidenav-item">
+                    <a href="/" class="sidenav-link">
+                        <div>Item 1</div>
+                    </a>
+                </li>
+                <li class="sidenav-item">
+                    <a href="/" class="sidenav-link">
+                        <div>Item 2</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="sidenav-divider mb-1"></li>
+        <li class="sidenav-header small font-weight-semibold">HEADER</li>
+
+        <li class="sidenav-item">
+            <a href="/" class="sidenav-link"><i class="sidenav-icon ion ion-md-quote"></i>
+                <div>Other Item</div>
+            </a>
+        </li>
+
+    </ul>
+{% endblock sidenav_links %}
+
+{% block content %}
+    <div>
+        This is content.
+    </div>
+{% endblock content %}
+
+{% block footer %}
+    <div class="pt-3">
+        <span class="footer-text font-weight-bolder">Company</span> ©2018
+    </div>
+    <div>
+        <a href="/" class="footer-link pt-3">Home</a>
+    </div>
+{% endblock footer %}

@@ -1,0 +1,210 @@
+{% extends "@AppWork/base.html.twig" %}
+
+{% if theme is not defined %}
+    {% set theme = {
+        'charset': 'utf-8',
+        'favicon': { 'href': 'favicon.ico' },
+        'navbar': {
+            'brand': { 'href': '/' },
+            'profile': {
+                'name': 'John Doe',
+                'picture': { 'src': '/bundles/appwork/custom/img/no-one.jpg' }
+            }
+        },
+        'sidenav': {
+            'brand': { 'href': '/' }
+        },
+        'main': {
+            'header': {
+                'title': 'No Navbar',
+                'titleAncestry': 'Layouts /'
+            }
+        },
+        'fonts': [
+            { 'href': 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900' }
+        ],
+        'icons': [
+            { 'href': '/bundles/appwork/vendor/fonts/fontawesome.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/ionicons.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/linearicons.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/open-iconic.css' },
+            { 'href': '/bundles/appwork/vendor/fonts/pe-icon-7-stroke.css' }
+        ],
+        'coreStyleSheets': [
+            { 'href': '/bundles/appwork/vendor/css/rtl/bootstrap.css', 'class': 'theme-settings-bootstrap-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/appwork.css', 'class': 'theme-settings-appwork-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/theme-corporate.css', 'class': 'theme-settings-theme-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/colors.css', 'class': 'theme-settings-colors-css' },
+            { 'href': '/bundles/appwork/vendor/css/rtl/uikit.css' }
+        ],
+        'coreScripts': [
+            { 'src': '/bundles/appwork/vendor/libs/popper/popper.js' },
+            { 'src': '/bundles/appwork/vendor/js/bootstrap.js' },
+            { 'src': '/bundles/appwork/vendor/js/sidenav.js' }
+        ],
+        'helperScripts': [
+            { 'src': '/bundles/appwork/vendor/js/material-ripple.js' },
+            { 'src': '/bundles/appwork/vendor/js/layout-helpers.js' },
+            { 'src': '/bundles/appwork/vendor/js/theme-settings.js' }
+        ],
+        'headScripts': [
+            { 'src': '/bundles/appwork/vendor/js/pace.js' },
+            { 'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }
+        ],
+        'styleSheetsOfLibs': [
+            { 'href': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' }
+        ],
+        'scriptsOfLibs': [
+            { 'src': '/bundles/appwork/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' }
+        ],
+        'customStyleSheets': [
+            { 'href': '/bundles/appwork/custom/css/layout-default-no-navbar.css' }
+        ]
+    } %}
+{% endif %}
+
+{% block title %}Administration{% endblock title %}
+
+{% block head %}
+    <meta charset="{{ theme.charset }}">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock description %}">
+    <link rel="icon" type="image/x-icon" href="{{ asset(theme.favicon.href) }}">
+    {% if theme.fonts|length > 0 %}
+        {% for font in theme.fonts %}
+            <link href="{{ font.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.icons|length > 0 %}
+        {% for icon in theme.icons %}
+            <link href="{{ icon.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.coreStyleSheets|length > 0 %}
+        {% for coreStyleSheet in theme.coreStyleSheets %}
+            <link href="{{ coreStyleSheet.href }}"{% if coreStyleSheet.class is defined %} class="{{ coreStyleSheet.class }}"{% endif %} rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.helperScripts|length > 0 %}
+        {% for helperScript in theme.helperScripts %}
+            <script src="{{ helperScript.src }}"></script>
+        {% endfor %}
+    {% endif %}
+    <script>
+        window.themeSettings = new ThemeSettings({
+            cssPath: '/bundles/appwork/vendor/css/rtl/',
+            themesPath: '/bundles/appwork/vendor/css/rtl/'
+        });
+    </script>
+    {% if theme.headScripts|length > 0 %}
+        {% for headScript in theme.headScripts %}
+            <script src="{{ headScript.src }}"></script>
+        {% endfor %}
+    {% endif %}
+    {% if theme.styleSheetsOfLibs|length > 0 %}
+        {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
+            <link href="{{ styleSheetOfLib.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+    {% if theme.customStyleSheets|length > 0 %}
+        {% for customStyleSheet in theme.customStyleSheets %}
+            <link href="{{ customStyleSheet.href }}" rel="stylesheet">
+        {% endfor %}
+    {% endif %}
+{% endblock head %}
+
+{% block body %}
+    <div class="page-loader">
+        <div class="bg-primary"></div>
+    </div>
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-1">
+        <div class="layout-inner">
+
+            <!-- Layout container -->
+            <div class="layout-container">
+
+                <!-- Layout sidenav -->
+                <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark">
+
+                    <!-- Brand -->
+                    <div class="app-brand">
+                        <span class="app-brand-logo bg-primary">
+                            {% block sidenav_brand_logo %}<img src="{{ asset('bundles/appwork/custom/img/moon.png') }}" />{% endblock sidenav_brand_logo %}
+                        </span>
+                        <a href="{{ theme.sidenav.brand.href }}" class="app-brand-text sidenav-text font-weight-normal ml-2">{% block sidenav_brand_title %}No Navbar{% endblock sidenav_brand_title %}</a>
+                        <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                            <i class="ion ion-md-menu align-middle"></i>
+                        </a>
+                    </div>
+
+                    <div class="sidenav-divider mt-0"></div>
+
+                    {% block sidenav_links %}
+                    {% endblock sidenav_links %}
+                </div>
+                <!-- / Layout sidenav -->
+
+                <!-- Layout content -->
+                <div class="layout-content">
+
+                    <!-- Content -->
+                    <div class="container-fluid flex-grow-1 container-p-y">
+
+                        <h4 class="font-weight-bold py-3 mb-4">
+                            {% if theme.main.header.title|length > 0 %}
+                                <span class="font-weight-bold align-middle">{% if theme.main.header.titleAncestry|length > 0 %}<span class="text-muted font-weight-light">{{ theme.main.header.titleAncestry }}</span> {% endif %}{{ theme.main.header.title }}</span>
+                            {% endif %}
+                            <a href="javascript:void(0)" class="layout-sidenav-toggle d-inline-block text-muted align-middle ml-3" style="font-size: 14px;"><i class="ion ion-md-menu text-large align-middle"></i></a>
+                        </h4>
+
+                        <!-- Page content -->
+                        {% block content %}
+                        {% endblock content %}
+                        <!-- / Page content -->
+
+                    </div>
+                    <!-- / Content -->
+
+                    <!-- Layout footer -->
+                    <nav class="layout-footer footer bg-footer-theme">
+                        <div class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
+                            {% block footer %}
+                                <div class="pt-3">
+                                    <span class="footer-text font-weight-bolder">Company</span> ©2018
+                                </div>
+                                <div>
+                                    <a href="/" class="footer-link pt-3">Home</a>
+                                </div>
+                            {% endblock footer %}
+                        </div>
+                    </nav>
+                    <!-- / Layout footer -->
+
+                </div>
+                <!-- Layout content -->
+
+            </div>
+            <!-- / Layout container -->
+
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    {% if theme.coreScripts|length > 0 %}
+        {% for coreScript in theme.coreScripts %}
+            <script src="{{ coreScript.src }}"></script>
+        {% endfor %}
+    {% endif %}
+    {% if theme.scriptsOfLibs|length > 0 %}
+        {% for scriptOfLib in theme.scriptsOfLibs %}
+            <script src="{{ scriptOfLib.src }}"></script>
+        {% endfor %}
+    {% endif %}
+    <script src="{{ asset('bundles/appwork/custom/js/boot-no-navbar.js') }}"></script>
+{% endblock body %}
