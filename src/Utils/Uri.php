@@ -53,4 +53,26 @@ class Uri
         return implode('/', $aRelativePath);
     }
     
+    /**
+     * @param string $sQualifiedName
+     * @param string $psNamespace
+     * @param string $psName
+     * @return void
+     */
+    public static function extractNamespaceAndNameFromQualifiedTagName($sQualifiedName, &$psNamespace, &$psName)
+    {
+        if (!is_string($sQualifiedName)) {
+            return;
+        }
+        if (strlen($sQualifiedName) < 1) {
+            return;
+        }
+        $aPortions = array_map('trim', explode(':', $sQualifiedName));
+        $psName = array_pop($aPortions);
+        $sNamespace = implode(':', array_filter($aPortions, function ($xI) {
+            return is_string($xI) && strlen($xI) > 0;
+        }));
+        $psNamespace = (strlen($sNamespace) > 0) ? $sNamespace : NULL;
+    }
+    
 }

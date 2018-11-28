@@ -1,2 +1,14 @@
 # Services
-#services:
+parameters:
+    appwork.theme.class: AppWorkBundle\Theme\Theme
+    appwork.twig.give_theme_default_extension.class: AppWorkBundle\Twig\ThemeExtension
+services:
+    appwork.theme:
+        class: '%appwork.theme.class%'
+        arguments: [ '1.0', 'UTF-8' ]
+    appwork.twig.give_theme_default_extension:
+        class: '%appwork.twig.give_theme_default_extension.class%'
+        calls:
+          - [ setContainer, [ '@service_container' ] ]
+        tags:
+            - { name: twig.extension }
