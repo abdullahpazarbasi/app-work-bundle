@@ -9,10 +9,12 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Theme\ComponentInterface;
+
 /**
  * Class StyleTag
  */
-class StyleTag extends Tag
+class StyleTag extends Tag implements ComponentInterface
 {
     
     const MEDIA_TYPE_CSS = 'text/css';

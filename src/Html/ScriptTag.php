@@ -9,10 +9,12 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Theme\ComponentInterface;
+
 /**
  * Class ScriptTag
  */
-class ScriptTag extends Tag
+class ScriptTag extends Tag implements ComponentInterface
 {
     
     const MEDIA_TYPE_APPLICATION_ECMASCRIPT = 'application/ecmascript';

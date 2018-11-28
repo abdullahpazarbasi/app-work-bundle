@@ -6,6 +6,8 @@ services:
     appwork.theme:
         class: '%appwork.theme.class%'
         arguments: [ '1.0', 'UTF-8' ]
+        lazy: false
+        public: true
     appwork.twig.give_theme_default_extension:
         class: '%appwork.twig.give_theme_default_extension.class%'
         calls:

@@ -9,10 +9,12 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Theme\ComponentInterface;
+
 /**
  * Class LinkTag
  */
-class LinkTag extends Tag
+class LinkTag extends Tag implements ComponentInterface
 {
     
     const CROSSORIGIN_ANONYMOUS = 'anonymous';
