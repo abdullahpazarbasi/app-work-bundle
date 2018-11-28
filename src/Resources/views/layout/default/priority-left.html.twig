@@ -7,29 +7,29 @@
 {% block title %}Administration{% endblock title %}
 
 {% block head %}
-    <meta charset="{{ theme.charset }}">
+    <meta charset="{{ theme.charset|raw }}">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock description %}">
     {{ theme.favicon }}
     {% if theme.fonts|length > 0 %}
         {% for font in theme.fonts %}
-            {{ font }}
+            {{ font|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.icons|length > 0 %}
         {% for icon in theme.icons %}
-            {{ icon }}
+            {{ icon|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.coreStyleSheets|length > 0 %}
         {% for coreStyleSheet in theme.coreStyleSheets %}
-            {{ coreStyleSheet }}
+            {{ coreStyleSheet|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.helperScripts|length > 0 %}
         {% for helperScript in theme.helperScripts %}
-            {{ helperScript }}
+            {{ helperScript|raw }}
         {% endfor %}
     {% endif %}
     <script>
@@ -40,17 +40,17 @@
     </script>
     {% if theme.headScripts|length > 0 %}
         {% for headScript in theme.headScripts %}
-            {{ headScript }}
+            {{ headScript|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.styleSheetsOfLibs|length > 0 %}
         {% for styleSheetOfLib in theme.styleSheetsOfLibs %}
-            {{ styleSheetOfLib }}
+            {{ styleSheetOfLib|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.customStyleSheets|length > 0 %}
         {% for customStyleSheet in theme.customStyleSheets %}
-            {{ customStyleSheet }}
+            {{ customStyleSheet|raw }}
         {% endfor %}
     {% endif %}
 {% endblock head %}
@@ -70,9 +70,9 @@
                 <!-- Brand -->
                 <div class="app-brand">
                     <span class="app-brand-logo bg-primary">
-                        {% block sidenav_brand_logo %}{{ theme.sidenav.brand.logo }}{% endblock sidenav_brand_logo %}
+                        {% block sidenav_brand_logo %}{{ theme.sidenav.brand.logo|raw }}{% endblock sidenav_brand_logo %}
                     </span>
-                    <a href="{{ theme.sidenav.brand.link }}" class="app-brand-text sidenav-text font-weight-normal ml-2">{% block sidenav_brand_title %}{{ theme.sidenav.brand.name }}{% endblock sidenav_brand_title %}</a>
+                    <a href="{{ theme.sidenav.brand.link|raw }}" class="app-brand-text sidenav-text font-weight-normal ml-2">{% block sidenav_brand_title %}{{ theme.sidenav.brand.name|raw }}{% endblock sidenav_brand_title %}</a>
                     <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -92,11 +92,11 @@
                 <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-white container-p-x" id="layout-navbar">
 
                     <!-- Brand -->
-                    <a href="{{ theme.navbar.brand.link }}" class="navbar-brand app-brand d-lg-none py-0 mr-4">
+                    <a href="{{ theme.navbar.brand.link|raw }}" class="navbar-brand app-brand d-lg-none py-0 mr-4">
                         <span class="app-brand-logo bg-primary">
-                            {% block navbar_brand_logo %}{{ theme.navbar.brand.logo }}{% endblock navbar_brand_logo %}
+                            {% block navbar_brand_logo %}{{ theme.navbar.brand.logo|raw }}{% endblock navbar_brand_logo %}
                         </span>
-                        <span class="app-brand-text font-weight-normal ml-2">{% block navbar_brand_title %}{{ theme.navbar.brand.name }}{% endblock navbar_brand_title %}</span>
+                        <span class="app-brand-text font-weight-normal ml-2">{% block navbar_brand_title %}{{ theme.navbar.brand.name|raw }}{% endblock navbar_brand_title %}</span>
                     </a>
 
                     <!-- Sidenav toggle -->
@@ -120,7 +120,7 @@
                                 <i class="ion ion-ios-search navbar-icon align-middle"></i>
                                 <span class="navbar-search-input pl-2">
                                 {% block search_box %}
-                                    <input type="text" class="form-control navbar-text mx-2" placeholder="{{ theme.navbar.searchbar.placeholder }}" style="width: {{ theme.navbar.searchbar.width }};">
+                                    <input type="text" class="form-control navbar-text mx-2" placeholder="{{ theme.navbar.searchbar.placeholder|raw }}" style="width: {{ theme.navbar.searchbar.width|raw }};">
                                 {% endblock search_box %}
                             </span>
                             </label>
@@ -133,8 +133,8 @@
                             <div class="navbar-user nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
-                                    <img src="{{ theme.navbar.profile.picture.src }}" alt class="d-block ui-w-30 rounded-circle">
-                                    <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{ theme.navbar.profile.name }}</span>
+                                    <img src="{{ theme.navbar.profile.picture.src|raw }}" alt class="d-block ui-w-30 rounded-circle">
+                                    <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{ theme.navbar.profile.name|raw }}</span>
                                 </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -163,7 +163,7 @@
                         <div class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
                             {% block footer %}
                                 <div class="pt-3">
-                                    <span class="footer-text font-weight-bolder">{{ theme.footer.brand.name }}</span> ©2018
+                                    <span class="footer-text font-weight-bolder">{{ theme.footer.brand.name|raw }}</span> ©2018
                                 </div>
                                 <div>
                                     <a href="/" class="footer-link pt-3">Home</a>
@@ -188,12 +188,12 @@
 
     {% if theme.coreScripts|length > 0 %}
         {% for coreScript in theme.coreScripts %}
-            {{ coreScript }}
+            {{ coreScript|raw }}
         {% endfor %}
     {% endif %}
     {% if theme.scriptsOfLibs|length > 0 %}
         {% for scriptOfLib in theme.scriptsOfLibs %}
-            {{ scriptOfLib }}
+            {{ scriptOfLib|raw }}
         {% endfor %}
     {% endif %}
     <script src="{{ asset('bundles/appwork/custom/js/boot-priority-left.js') }}"></script>

@@ -55,6 +55,21 @@ class SearchbarPropertySet implements ArrayableInterface, JsonableInterface
     
     /**
      * @param string $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        if (in_array($name, [
+            'placeholder',
+            'width'
+        ])) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    /**
+     * @param string $name
      * @param mixed $value
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException

@@ -33,7 +33,6 @@ class LinkPropertySet implements ArrayableInterface, JsonableInterface
      * Brand constructor
      *
      * @param Theme $oTheme
-     * @throws \DOMException
      * @return void
      */
     public function __construct(Theme $oTheme)
@@ -43,7 +42,6 @@ class LinkPropertySet implements ArrayableInterface, JsonableInterface
     }
     
     /**
-     * @throws \DOMException
      * @return array
      */
     public function giveDefault(): array
@@ -53,6 +51,21 @@ class LinkPropertySet implements ArrayableInterface, JsonableInterface
             'title' => 'Company'
         ];
         return $aO;
+    }
+    
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        if (in_array($name, [
+            'href',
+            'title'
+        ])) {
+            return TRUE;
+        }
+        return FALSE;
     }
     
     /**

@@ -59,6 +59,21 @@ class Profile implements ArrayableInterface, JsonableInterface
     
     /**
      * @param string $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        if (in_array($name, [
+            'name',
+            'picture'
+        ])) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    /**
+     * @param string $name
      * @param mixed $value
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
@@ -92,7 +107,7 @@ class Profile implements ArrayableInterface, JsonableInterface
     {
         if (in_array($name, [
             'name',
-            'logo'
+            'picture'
         ])) {
             return $this->aData[$name];
         }
