@@ -9,22 +9,13 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Utils\Html;
+
 /**
  * Class ClassTagAttribute
  */
 class ClassTagAttribute
 {
-    
-    const BEFORE = 1;
-    const AFTER = 2;
-    
-    /**
-     * @var array
-     */
-    protected static $aInsertModes = [
-        self::BEFORE,
-        self::AFTER
-    ];
     
     /**
      * @var TagAttribute
@@ -32,8 +23,6 @@ class ClassTagAttribute
     protected $oTagAttribute;
     
     /**
-     * HtmlClass constructor
-     *
      * @param \DOMNode $oNode ( Tag | TagAttribute )
      * @throws \DOMException
      * @return void
@@ -72,45 +61,14 @@ class ClassTagAttribute
      * @throws \InvalidArgumentException
      * @return static
      */
-    public function addClass(string $sClass, int $iInsertMode = self::AFTER, ?string $sReferenceClass = NULL)
+    public function addClass(string $sClass, int $iInsertMode = Html::AFTER, ?string $sReferenceClass = NULL)
     {
-        if (!in_array($iInsertMode, self::$aInsertModes)) {
-            throw new \InvalidArgumentException("Invalid insert mode");
-        }
-        if ($sReferenceClass === $sClass) {
-            throw new \InvalidArgumentException("Reference class and class which will be added are the same");
-        }
-        $aNewClasses = [];
-        $aOldClasses = $this->getClassesAsArray();
-        $bAdded = FALSE;
-        foreach ($aOldClasses as $sCurrentClass) {
-            if ($sCurrentClass === $sReferenceClass) {
-                if ($iInsertMode === self::BEFORE) { // if BEFORE
-                    $aNewClasses[] = $sClass;
-                    $bAdded = TRUE;
-                    $aNewClasses[] = $sReferenceClass;
-                }
-                else { // if AFTER
-                    $aNewClasses[] = $sReferenceClass;
-                    $aNewClasses[] = $sClass;
-                    $bAdded = TRUE;
-                }
-            }
-            elseif ($sReferenceClass === NULL && $sCurrentClass === $sClass) {
-                $aNewClasses[] = $sClass;
-                $bAdded = TRUE;
-            }
-            else {
-                if ($sCurrentClass !== $sClass) {
-                    $aNewClasses[] = $sCurrentClass;
-                }
-            }
-        }
-        if (!$bAdded) {
-            $aNewClasses[] = $sClass;
-            $bAdded = TRUE;
-        }
-        $this->oTagAttribute->value = implode(' ', $aNewClasses);
+        $this->oTagAttribute->value = Html::addClassIntoClassAttributeContent(
+            $this->oTagAttribute->value,
+            $sClass,
+            $iInsertMode,
+            $sReferenceClass
+        );
         return $this;
     }
     
@@ -120,14 +78,7 @@ class ClassTagAttribute
      */
     public function removeClass(string $sClass)
     {
-        $aNewClasses = [];
-        $aOldClasses = $this->getClassesAsArray();
-        foreach ($aOldClasses as $sCurrentClass) {
-            if ($sCurrentClass !== $sClass) {
-                $aNewClasses[] = $sCurrentClass;
-            }
-        }
-        $this->oTagAttribute->value = implode(' ', $aNewClasses);
+        $this->oTagAttribute->value = Html::removeClassFromClassAttributeContent($this->oTagAttribute->value, $sClass);
         return $this;
     }
     
@@ -154,12 +105,7 @@ class ClassTagAttribute
      */
     protected function getClassesAsArray(): array
     {
-        $aO = [];
-        $sClasses = $this->oTagAttribute->value;
-        if (strlen($sClasses) > 0) {
-            $aO = preg_split('/\s+/', $sClasses);
-        }
-        return array_unique($aO);
+        return Html::getClassAttributeContentAsArray($this->oTagAttribute->value);
     }
     
 }

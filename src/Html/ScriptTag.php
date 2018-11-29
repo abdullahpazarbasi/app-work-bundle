@@ -31,8 +31,6 @@ class ScriptTag extends Tag implements ComponentInterface
     ];
     
     /**
-     * Script constructor
-     *
      * @param Document $oDocument
      * @param string|null $sSrc [optional]
      * @param string|null $sInlineScript [optional]

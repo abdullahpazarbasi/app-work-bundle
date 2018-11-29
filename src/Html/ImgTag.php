@@ -27,8 +27,6 @@ class ImgTag extends Tag
     ];
     
     /**
-     * Script constructor
-     *
      * @param Document $oDocument
      * @param string|null $sAlt [optional]
      * @param string|null $sCrossOrigin [optional]

@@ -8,7 +8,7 @@
  * Time: 10:00
  */
 namespace AppWorkBundle\Html;
-use AppWorkBundle\Utils\Uri;
+use AppWorkBundle\Utils\Html;
 
 /**
  * Class TagAttribute
@@ -79,7 +79,7 @@ class TagAttribute extends \DOMAttr
     {
         $sNamespace = NULL;
         $sName = NULL;
-        Uri::extractNamespaceAndNameFromQualifiedTagName($sQualifiedName, $sNamespace, $sName);
+        Html::extractNamespaceAndNameFromQualifiedName($sQualifiedName, $sNamespace, $sName);
         if ($xValue !== NULL) {
             if (is_bool($xValue)) {
                 if (!$xValue) {

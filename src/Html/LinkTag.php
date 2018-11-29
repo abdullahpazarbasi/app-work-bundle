@@ -65,8 +65,6 @@ class LinkTag extends Tag implements ComponentInterface
     ];
     
     /**
-     * Link constructor
-     *
      * @param Document $oDocument
      * @param string|null $sCrossOrigin [optional]
      * @param string|null $sHref [optional]

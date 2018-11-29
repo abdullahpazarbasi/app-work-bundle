@@ -10,14 +10,16 @@
 namespace AppWorkBundle\Twig;
 
 use AppWorkBundle\Theme\Theme;
+use AppWorkBundle\Utils\Html;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Class ThemeExtension
  */
-final class ThemeExtension extends Twig_Extension
+final class ThemeExtension extends AbstractExtension
 {
     
     use ContainerAwareTrait;
@@ -27,9 +29,19 @@ final class ThemeExtension extends Twig_Extension
      */
     public function getFunctions(): array
     {
-        $aOptions = [];
         return [
-            new Twig_SimpleFunction('theme', [ $this, 'themeFunction' ], $aOptions)
+            new TwigFunction('theme', [ $this, 'themeFunction' ])
+        ];
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getFilters(): array
+    {
+        return [
+            new TwigFilter('class', [ $this, 'classFilter' ]),
+            new TwigFilter('style', [ $this, 'styleFilter' ]),
         ];
     }
     
@@ -42,11 +54,25 @@ final class ThemeExtension extends Twig_Extension
     }
     
     /**
-     * {@inheritDoc}
+     * @param string $sInput
+     * @param string $sClasses
+     * @param bool $bMix
+     * @return string
      */
-    public function getName()
+    public function classFilter(string $sInput, string $sClasses, bool $bMix = FALSE): string
     {
-        return 'theme';
+        return Html::replaceClassAttributeInTag($sInput, $sClasses, $bMix);
+    }
+    
+    /**
+     * @param string $sInput
+     * @param string $sInlineStyle
+     * @param bool $bMix
+     * @return string
+     */
+    public function styleFilter(string $sInput, string $sInlineStyle, bool $bMix = FALSE): string
+    {
+        return Html::replaceStyleAttributeInTag($sInput, $sInlineStyle, $bMix);
     }
     
 }

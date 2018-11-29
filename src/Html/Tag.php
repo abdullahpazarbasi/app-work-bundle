@@ -9,13 +9,59 @@
  */
 namespace AppWorkBundle\Html;
 
-use AppWorkBundle\Utils\Uri;
+use AppWorkBundle\Utils\Html;
 
 /**
  * Class Tag
  */
 class Tag extends \DOMElement
 {
+    
+    const MEDIA_QUERY_OPERATOR_AND = 'and';
+    const MEDIA_QUERY_OPERATOR_OR = ',';
+    const MEDIA_QUERY_OPERATOR_NOT = 'not';
+    const MEDIA_QUERY_DEVICE_ALL = 'all';
+    const MEDIA_QUERY_DEVICE_AURAL = 'aural';
+    const MEDIA_QUERY_DEVICE_BRAILLE = 'braille';
+    const MEDIA_QUERY_DEVICE_HANDHELD = 'handheld';
+    const MEDIA_QUERY_DEVICE_PRINT = 'print';
+    const MEDIA_QUERY_DEVICE_PROJECTION = 'projection';
+    const MEDIA_QUERY_DEVICE_SCREEN = 'screen';
+    const MEDIA_QUERY_DEVICE_TTY = 'tty';
+    const MEDIA_QUERY_DEVICE_TV = 'tv';
+    const MEDIA_QUERY_PROPERTY_WIDTH = 'width';
+    const MEDIA_QUERY_PROPERTY_MIN_WIDTH = 'min-width';
+    const MEDIA_QUERY_PROPERTY_MAX_WIDTH = 'max-width';
+    const MEDIA_QUERY_PROPERTY_HEIGHT = 'height';
+    const MEDIA_QUERY_PROPERTY_MIN_HEIGHT = 'min-height';
+    const MEDIA_QUERY_PROPERTY_MAX_HEIGHT = 'max-height';
+    const MEDIA_QUERY_PROPERTY_DEVICE_WIDTH = 'device-width';
+    const MEDIA_QUERY_PROPERTY_MIN_DEVICE_WIDTH = 'min-device-width';
+    const MEDIA_QUERY_PROPERTY_MAX_DEVICE_WIDTH = 'max-device-width';
+    const MEDIA_QUERY_PROPERTY_DEVICE_HEIGHT = 'device-height';
+    const MEDIA_QUERY_PROPERTY_MIN_DEVICE_HEIGHT = 'min-device-height';
+    const MEDIA_QUERY_PROPERTY_MAX_DEVICE_HEIGHT = 'max-device-height';
+    const MEDIA_QUERY_PROPERTY_ORIENTATION = 'orientation'; // portrait|landscape
+    const MEDIA_QUERY_PROPERTY_ASPECT_RATIO = 'aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_MIN_ASPECT_RATIO = 'min-aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_MAX_ASPECT_RATIO = 'max-aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_DEVICE_ASPECT_RATIO = 'device-aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_MIN_DEVICE_ASPECT_RATIO = 'min-device-aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_MAX_DEVICE_ASPECT_RATIO = 'max-device-aspect-ratio';
+    const MEDIA_QUERY_PROPERTY_COLOR = 'color';
+    const MEDIA_QUERY_PROPERTY_MIN_COLOR = 'min-color';
+    const MEDIA_QUERY_PROPERTY_MAX_COLOR = 'max-color';
+    const MEDIA_QUERY_PROPERTY_COLOR_INDEX = 'color-index';
+    const MEDIA_QUERY_PROPERTY_MIN_COLOR_INDEX = 'min-color-index';
+    const MEDIA_QUERY_PROPERTY_MAX_COLOR_INDEX = 'max-color-index';
+    const MEDIA_QUERY_PROPERTY_MONOCHROME = 'monochrome';
+    const MEDIA_QUERY_PROPERTY_MIN_MONOCHROME = 'min-monochrome';
+    const MEDIA_QUERY_PROPERTY_MAX_MONOCHROME = 'max-monochrome';
+    const MEDIA_QUERY_PROPERTY_RESOLUTION = 'resolution';
+    const MEDIA_QUERY_PROPERTY_MIN_RESOLUTION = 'min-resolution';
+    const MEDIA_QUERY_PROPERTY_MAX_RESOLUTION = 'max-resolution';
+    const MEDIA_QUERY_PROPERTY_SCAN = 'resolution'; // progressive|interlace
+    const MEDIA_QUERY_PROPERTY_GRID = 'grid'; // 1 (for grid)|0 (for bitmap)
     
     /**
      * Inherited from DOMElement:
@@ -104,7 +150,7 @@ class Tag extends \DOMElement
     {
         $sNamespace = NULL;
         $sName = NULL;
-        Uri::extractNamespaceAndNameFromQualifiedTagName($sQualifiedName, $sNamespace, $sName);
+        Html::extractNamespaceAndNameFromQualifiedName($sQualifiedName, $sNamespace, $sName);
         if ($sNamespace !== NULL) {
             $sRegisteredNamespaceUri = $oDocument->lookupNamespaceUri($sNamespace);
             if ($sRegisteredNamespaceUri === NULL && $sNamespaceUri === NULL) {
@@ -204,7 +250,7 @@ class Tag extends \DOMElement
         }
         $sNamespace = NULL;
         $sName = NULL;
-        Uri::extractNamespaceAndNameFromQualifiedTagName($name, $sNamespace, $sName);
+        Html::extractNamespaceAndNameFromQualifiedName($name, $sNamespace, $sName);
         if ($sNamespace === NULL) {
             if ($this->hasAttribute($sName)) {
                 return $this->getAttribute($sName);
