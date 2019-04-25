@@ -12,13 +12,14 @@ namespace AppWorkBundle\Theme\Components\Brand;
 use AppWorkBundle\ArrayableInterface;
 use AppWorkBundle\Html\ImgTag;
 use AppWorkBundle\JsonableInterface;
+use AppWorkBundle\Theme\ComponentInterface;
 use AppWorkBundle\Theme\PropertySets\LinkPropertySet;
 use AppWorkBundle\Theme\Theme;
 
 /**
  * Class Brand
  */
-class Brand implements ArrayableInterface, JsonableInterface
+class Brand implements ComponentInterface, ArrayableInterface, JsonableInterface
 {
     
     /**

@@ -12,13 +12,14 @@ namespace AppWorkBundle\Theme\Components\Profile;
 use AppWorkBundle\ArrayableInterface;
 use AppWorkBundle\Html\ImgTag;
 use AppWorkBundle\JsonableInterface;
+use AppWorkBundle\Theme\ComponentInterface;
 use AppWorkBundle\Theme\PropertySets\ImagePropertySet;
 use AppWorkBundle\Theme\Theme;
 
 /**
  * Class Profile
  */
-class Profile implements ArrayableInterface, JsonableInterface
+class Profile implements ComponentInterface, ArrayableInterface, JsonableInterface
 {
     
     /**

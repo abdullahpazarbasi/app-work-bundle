@@ -11,7 +11,10 @@ namespace AppWorkBundle\Theme\Sections\Sidenav;
 
 use AppWorkBundle\ArrayableInterface;
 use AppWorkBundle\JsonableInterface;
+use AppWorkBundle\Theme\ComponentCollection;
 use AppWorkBundle\Theme\Components\Brand\Brand;
+use AppWorkBundle\Theme\Components\Navigations\SidenavMenu\SidenavMenuItem;
+use AppWorkBundle\Theme\Components\Navigations\SidenavMenu\SidenavMenuItems;
 use AppWorkBundle\Theme\Theme;
 
 /**
@@ -50,8 +53,22 @@ class Sidenav implements ArrayableInterface, JsonableInterface
     public function giveDefault(): array
     {
         $oBrand = new Brand($this->oTheme);
+        $oMyItemsItem = new SidenavMenuItem();
+        $oDividerItem = new SidenavMenuItem();
+        $oDividerItem->type = 'divider';
+        $oHeaderItem = new SidenavMenuItem();
+        $oHeaderItem->type = 'header';
+        $oOtherItem = new SidenavMenuItem();
+        $oSidenavMenuItems = new SidenavMenuItems();
+        $oSidenavMenuItems[] = $oMyItemsItem;
+        $oSidenavMenuItems[] = $oDividerItem;
+        $oSidenavMenuItems[] = $oHeaderItem;
+        $oSidenavMenuItems[] = $oOtherItem;
+        $oNavigationCollection = new ComponentCollection();
+        $oNavigationCollection[] = $oSidenavMenuItems;
         $aO = [
-            'brand' => $oBrand
+            'brand' => $oBrand,
+            'navigations' => $oNavigationCollection
         ];
         return $aO;
     }
@@ -63,7 +80,8 @@ class Sidenav implements ArrayableInterface, JsonableInterface
     public function __isset($name)
     {
         if (in_array($name, [
-            'brand'
+            'brand',
+            'navigations'
         ])) {
             return TRUE;
         }
@@ -86,6 +104,13 @@ class Sidenav implements ArrayableInterface, JsonableInterface
             $this->aData['brand'] = $value;
             return;
         }
+        if ($name === 'navigations') {
+            if (!is_object($value) || !($value instanceof ComponentCollection)) {
+                throw new \UnexpectedValueException(sprintf("navigations must be an instance of '%1\$s'", ComponentCollection::class));
+            }
+            $this->aData['navigations'] = $value;
+            return;
+        }
         throw new \InvalidArgumentException(sprintf("%s is not a valid property", $name));
     }
     
@@ -97,9 +122,28 @@ class Sidenav implements ArrayableInterface, JsonableInterface
     public function __get($name)
     {
         if (in_array($name, [
-            'brand'
+            'brand',
+            'navigations'
         ])) {
             return $this->aData[$name];
+        }
+        throw new \InvalidArgumentException(sprintf("%s is not a valid property", $name));
+    }
+    
+    /**
+     * @param string $name
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function __unset($name)
+    {
+        if ($name === 'brand') {
+            $this->aData['brand'] = NULL;
+            return;
+        }
+        if ($name === 'navigations') {
+            $this->aData['navigations'] = NULL;
+            return;
         }
         throw new \InvalidArgumentException(sprintf("%s is not a valid property", $name));
     }

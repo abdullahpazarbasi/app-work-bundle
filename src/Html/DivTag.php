@@ -9,10 +9,12 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Theme\ComponentInterface;
+
 /**
  * Class DivTag
  */
-class DivTag extends Tag
+class DivTag extends Tag implements ComponentInterface
 {
     
     /**

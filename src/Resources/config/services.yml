@@ -1,16 +1,21 @@
 # Services
 parameters:
     appwork.theme.class: AppWorkBundle\Theme\Theme
-    appwork.twig.give_theme_default_extension.class: AppWorkBundle\Twig\ThemeExtension
+    appwork.twig.theme_extension.class: AppWorkBundle\Twig\ThemeExtension
+    appwork.twig.tree_extension.class: AppWorkBundle\Twig\TreeExtension
 services:
     appwork.theme:
         class: '%appwork.theme.class%'
         arguments: [ '1.0', 'UTF-8' ]
         lazy: false
         public: true
-    appwork.twig.give_theme_default_extension:
-        class: '%appwork.twig.give_theme_default_extension.class%'
+    appwork.twig.theme_extension:
+        class: '%appwork.twig.theme_extension.class%'
         calls:
           - [ setContainer, [ '@service_container' ] ]
+        tags:
+            - { name: twig.extension }
+    appwork.twig.tree_extension:
+        class: '%appwork.twig.tree_extension.class%'
         tags:
             - { name: twig.extension }

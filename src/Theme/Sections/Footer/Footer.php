@@ -117,6 +117,24 @@ class Footer implements ArrayableInterface, JsonableInterface
     }
     
     /**
+     * @param string $name
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function __unset($name)
+    {
+        if ($name === 'brand') {
+            $this->aData['brand'] = NULL;
+            return;
+        }
+        if ($name === 'navigations') {
+            $this->aData['navigations'] = NULL;
+            return;
+        }
+        throw new \InvalidArgumentException(sprintf("%s is not a valid property", $name));
+    }
+    
+    /**
      * @return array
      */
     public function toArray(): array

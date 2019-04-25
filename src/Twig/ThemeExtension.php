@@ -25,6 +25,26 @@ final class ThemeExtension extends AbstractExtension
     use ContainerAwareTrait;
     
     /**
+     * @return Theme
+     */
+    protected function getThemeInstance(): Theme
+    {
+        /** @var Theme $oTheme */
+        $oTheme = $this->container->get('appwork.theme');
+        return $oTheme;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getGlobals(): array
+    {
+        return [
+            'theme' => $this->getThemeInstance()
+        ];
+    }
+    
+    /**
      * {@inheritDoc}
      */
     public function getFunctions(): array
@@ -50,7 +70,7 @@ final class ThemeExtension extends AbstractExtension
      */
     public function themeFunction(): Theme
     {
-        return $this->container->get('appwork.theme');
+        return $this->getThemeInstance();
     }
     
     /**

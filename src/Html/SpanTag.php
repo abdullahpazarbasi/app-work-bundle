@@ -9,10 +9,12 @@
  */
 namespace AppWorkBundle\Html;
 
+use AppWorkBundle\Theme\ComponentInterface;
+
 /**
  * Class SpanTag
  */
-class SpanTag extends Tag
+class SpanTag extends Tag implements ComponentInterface
 {
     
     /**
